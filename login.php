@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="en" >
 <?php
+  if(isset($_POST['login'])){
    include 'db_connect.php';
    function Validate($data){
      $data= trim($data);
@@ -82,55 +84,171 @@
       {
          $error = '<span style="color:red;text-align:center;">Your Login Name or Password is invalid';
       }
+    }
+    else if(isset($_POST['signup'])){
+      require 'db_connect.php';
+
+      $sql = "SELECT * FROM company";
+      $res = mysqli_query($connection,$sql);
+
+      $name = $_POST['name'];
+      $role=$_POST['role'];
+      $password = $_POST['password'];
+  $mobile = $_POST['mobile'];
+      $email = $_POST['email'];
+      function generate($string1,$string2){
+        $sub1 = substr($string1,0,3);
+        $sub2 = substr($string2,0,3);
+        return $sub1.$sub2;
+      }
+
+      $ID = generate($name,$mobile);
+
+
+      if($role == False){
+      	// header("Location: administrate.php?success=false");
+      }else if($role=='E'){
+        //$sql = "INSERT INTO employee(ID,name,password,mobile,email) VALUES ('$ID', '$name', '$password','$mobile','$email')";
+//$res = mysqli_query($connection, $sql);
+ session_start();
+  $_SESSION['ID']=$ID;
+  $_SESSION['name']=$name;
+
+  $_SESSION['password']=$password;
+  $_SESSION['mobile']=$mobile;
+  $_SESSION['email']=$email;
+
+      	 header("Location:comEmpProf.php");
+      }
+      else if($role=='M'){
+        //$sql = "INSERT INTO employee(ID,name,password,mobile,email) VALUES ('$ID', '$name', '$password','$mobile','$email')";
+//$res = mysqli_query($connection, $sql);
+ session_start();
+
+  $_SESSION['name']=$name;
+
+  $_SESSION['password']=$password;
+  $_SESSION['mobile']=$mobile;
+  $_SESSION['email']=$email;
+
+      	 header("Location:comManProf.php");
+      }
+    }
 
 ?>
 
-<html lang="en" >
-
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Login</title>
+  <title>Register</title>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
-      <link rel="stylesheet" href="css/login.css">
+      <link rel="stylesheet" href="css/style1.css">
 
 
 </head>
 
 <body>
 
-    <div class="login-form col-sm-12 col-md-6 col-md-offset-4">
-    <form  method="post" action="">
-     <h1 >Login</h1>
-     <div class="form-group ">
-       <input type="email" name="email"  aria-describedby="email" placeholder="E-mail" id="email" required>
-       <i class="fa fa-user"></i>
-     </div>
-     <div class="form-group log-status">
-       <input type="password" name="password"  id="password" placeholder="Password">
-       <i class="fa fa-lock"></i>
-     </div>
+  <div class="form">
 
-     <div style="text-align:center;">  <span><?php echo $error; ?></span></div>
+      <ul class="tab-group">
+        <li class="tab active"><a href="#login">Log In</a></li>
+        <li class="tab"><a href="#signup">Sign Up</a></li>
+
+      </ul>
+
+      <div class="tab-content">
+        <div id="login">
 
 
-     <button type="submit" name="login" class="log-btn" >Log in</button>
+          <form action="" method="post">
 
-<p class="message">Not registered? <a href="#">Create an account</a></p>
+            <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input name="email" id="email" type="email"required autocomplete="off"/>
+          </div>
 
-</form>
-   </div>
+          <div class="field-wrap">
+            <label>
+              Password<span class="req">*</span>
+            </label>
+            <input  name="password"  id="password" type="password"required autocomplete="off"/>
+          </div>
+
+          <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+          <button name="login" class="button button-block"/>Log In</button>
+
+          </form>
+
+        </div>
+        <div id="signup">
+
+
+          <form action="" method="post">
+
+
+            <div class="field-wrap">
+              <label>
+               Name<span class="req">*</span>
+              </label>
+              <input type="text" name="name" required autocomplete="off" />
+            </div>
+
+
+
+
+          <div class="field-wrap">
+            <label>
+              Email Address<span class="req">*</span>
+            </label>
+            <input type="email" name="email"required autocomplete="off"/>
+          </div>
+          <div class="field-wrap">
+            <label>
+              Contact no<span class="req">*</span>
+            </label>
+            <input type="number" name="mobile" required autocomplete="off"/>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Set A Password<span class="req">*</span>
+            </label>
+            <input type="password"  name="password" required autocomplete="off"/>
+          </div>
+
+                    <div class="field-wrap" style="text-align:center;">
+          <select name="role" >
+
+	           <option value="">Select your role</option>
+
+	            <option value="M">Manager</option>
+
+	             <option value="E">Employee</option>
+
+	            </select>
+</div>
+          <button type="submit" name="signup" class="button button-block"/>Get Started</button>
+
+          </form>
+
+        </div>
+
+
+
+      </div><!-- tab-content -->
+
+</div> <!-- /form -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script  src="js/login.js"></script>
+    <script  src="js/index1.js"></script>
 
 
 

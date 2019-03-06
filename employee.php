@@ -19,52 +19,89 @@ if (!isset($_SESSION['login_user'])) {
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" charset="utf-8"></script>
   </head>
   <body>
-    <table id="table" class="table table-striped table-bordered table-responsive" style="width:100%">
-          <thead>
-              <tr>
-                  <th>Company Name</th>
-                  <th>Company Id</th>
-                  <th>action</th>
-
-              </tr>
-          </thead>
-          <tbody>
+    <nav  class="navbar navbar-light" style="background-color: #e3f2fd;">
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <a class="navbar-brand" href="#">empSecure</a>
+       </div>
+       <ul class="nav navbar-nav">
 
 
-              <?php
-              $sql = "SELECT * FROM company";
-              $result = mysqli_query($connection,$sql);
-
-              while ($company = mysqli_fetch_assoc($result)) {
-
-              echo  "<tr>";
-              echo    "<td>".$company["name"]."</td>";
-
-              echo    "<td>".$company["ID"]."</td>";
-              echo     "<form class='' action='employeeApply.php' method='post'>";
-              echo    "<td><input type='radio' name='companyID' value='".$company["ID"]."' required></td>";
-              echo "<td><input type='submit' name='' value='APPLY'/></td>";
-              echo "</form>";
-              echo  "</tr>";
-
-              }
-               ?>
-
-                <!-- <input type="submit" name="" value="APPLY"/> -->
-
-          </tbody>
-          </table>
+           <a href="logout.php" class="btn btn-danger">Logout</a>
+       </ul>
+     </div>
+   </nav>
+   <div class="container">
+    <div class="row">
 
 
-          <div class="">
+    <div class="col-md-12  text-right ftco-animate">
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table id="table" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Company Id</th>
+                    <th>action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <?php
+                $sql = "SELECT * FROM company";
+                $result = mysqli_query($connection,$sql);
+
+                while ($company = mysqli_fetch_assoc($result)) {
+
+                echo  "<tr>";
+                echo    "<td>".$company["name"]."</td>";
+
+                echo    "<td>".$company["ID"]."</td>";
+                echo     "<form class='' action='employeeApply.php' method='post'>";
+                echo    "<td><input type='radio' name='companyID' value='".$company["ID"]."' required></td>";
+                echo "<td><input type='submit' name='' value='APPLY'/></td>";
+                echo "</form>";
+                echo  "</tr>";
+
+                }
+                 ?>
+
+                  <!-- <input type="submit" name="" value="APPLY"/> -->
+
+            </tbody>
+            </table>
+
+    </div>
+
+        </div>
+      </div>
+
+
+      <div class="container">
+       <div class="row">
+
+
+       <div class="col-md-12  text-right ftco-animate">
+
+
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-md-12">
             <h4>Select company:</h4>
 
-            <table id="table" class="table table-striped table-bordered table-responsive" >
+            <table id="table1" class="table table-striped table-bordered" style="width:100%;" >
                   <thead>
                       <tr>
                           <th></th>
                           <th>Company Name</th>
-                          <th>company ID</th>
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -103,13 +140,16 @@ if (!isset($_SESSION['login_user'])) {
 
 
          </table>
+       </div>
 
-          </div>
+           </div>
+         </div>
+
   </body>
 </html>
 <script type="text/javascript">
 $(document).ready(function() {
-  // $('#table').DataTable();
+  $('#table1').DataTable();
   $('#table').DataTable();
 
 } );

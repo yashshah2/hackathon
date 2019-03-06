@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2019 at 10:48 AM
+-- Generation Time: Mar 06, 2019 at 08:20 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -33,6 +33,15 @@ CREATE TABLE `company` (
   `ID` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`name`, `ID`) VALUES
+('Amazon', '4891'),
+('TCS', '7725'),
+('Facebook', '7783');
+
 -- --------------------------------------------------------
 
 --
@@ -43,25 +52,18 @@ CREATE TABLE `employee` (
   `ID` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `name` text NOT NULL,
-  `aadhar` longblob NOT NULL,
+  `aadhar` text NOT NULL,
   `mobile` bigint(10) NOT NULL,
   `address` varchar(50) NOT NULL,
   `dob` varchar(10) NOT NULL,
-  `resume` longblob NOT NULL,
-  `ceritficate` longblob NOT NULL,
+  `resume` text NOT NULL,
+  `certificate` text NOT NULL,
   `presentComany` varchar(50) DEFAULT NULL,
   `previousCompany` varchar(50) DEFAULT NULL,
   `presentComanyId` varchar(20) DEFAULT NULL,
   `previousCompanyId` varchar(20) DEFAULT NULL,
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`ID`, `password`, `name`, `aadhar`, `mobile`, `address`, `dob`, `resume`, `ceritficate`, `presentComany`, `previousCompany`, `presentComanyId`, `previousCompanyId`, `email`) VALUES
-('Roh823', 'rohan', 'Rohan ', '', 8234567890, 'add', '12/12/12', '', '', NULL, NULL, 'tcs111', NULL, 'rohanabk123@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,9 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`ID`, `name`, `companyName`, `companyID`, `password`, `mobile`, `email`) VALUES
-('1', 'yash shah', 'TCS', 'tcs001', 'yashshah2', 8123738100, 'shah.yash362@gmail.com');
+('Ama909', 'john', 'Amazon', '4891', 'john', 9090931303, 'rohanabk123@hotmail.com'),
+('Fac701', 'Mark', 'Facebook', '7783', 'mark', 7019464379, 'mark@gmail.com'),
+('TCS701', 'Clay', 'TCS', '7725', 'clay', 7019464379, 'clay@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,6 +103,13 @@ CREATE TABLE `notification` (
   `appliedID` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `EID`, `presentCompanyID`, `appliedID`, `status`) VALUES
+(14, 'Dem749', '4891', '7783', '1');
 
 --
 -- Indexes for dumped tables
@@ -136,7 +147,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

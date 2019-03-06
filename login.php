@@ -23,7 +23,7 @@
       $employee = mysqli_query($connection,$query1);
       $row1 = mysqli_fetch_array($employee,MYSQLI_ASSOC);
       $count1 = mysqli_num_rows($employee);
-      
+
       $query2 = "SELECT * FROM manager WHERE email='$email' " ;
       $manager = mysqli_query($connection,$query2);
       $row2 = mysqli_fetch_array($manager,MYSQLI_ASSOC);
@@ -45,12 +45,12 @@
         $_SESSION['name']=$row['name'];
         $_SESSION['mobile']=$row['mobile'];
         $_SESSION['address']=$row['address'];
-
+        $_SESSION['presentCompanyID'] = $row['presentComanyId'];
 
         if($count == 1)
         {
            $_SESSION['login_user'] = $email;
-           header("Location: index.html");
+           header("Location: employee.php");
         }
       }
       if($count2 == 1)
@@ -66,13 +66,14 @@
         $_SESSION['ID']=$row['ID'];
         $_SESSION['name']=$row['name'];
         $_SESSION['mobile']=$row['mobile'];
+        $_SESSION['presentCompanyID'] = $row['companyID'];
 
 
 
         if($count == 1)
         {
            $_SESSION['login_user'] = $email;
-           header("Location: index.html");
+           header("Location: manager.php");
         }
       }
 

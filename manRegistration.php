@@ -18,6 +18,9 @@ function generate($string1,$string2){
 $ID = generate($companyName,$mobile);
 $companyID = rand(1111,9999);
 
+$sql = "INSERT INTO company values('$companyName','$companyID')";
+$res = mysqli_query($connection, $sql);
+
 
 $sql = "INSERT INTO manager(ID,name,companyID,companyName,password,mobile,email) VALUES ('$ID', '$name', '$companyID', '$companyName','$password','$mobile','$email')";
 
@@ -25,7 +28,7 @@ $res = mysqli_query($connection, $sql);
 if($res == False){
 	// header("Location: administrate.php?success=false");
 }else{
-	// header("Location: administrate.php?success=true");
+	 header("Location:login.php");
 }
 
 

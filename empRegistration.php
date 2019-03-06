@@ -9,14 +9,9 @@ $mobile = $_POST['mobile'];
 $email = $_POST['email'];
 $dob = $_POST['dob'];
 $companyID = $_POST['companyID'];
-
-if ($_SERVER['REQUEST_METHOD']=='POST') {
-  // code...
-  $image = $_FILES['image']['tmp_name'];
-  $imgContent = addslashes(file_get_contents($image));
-
-}
-
+$resume = $_POST['resume'];
+$certificate = $_POST['certificate'];
+$aadhar = $_POST['aadhar'];
 
 function generate($string1,$string2){
   $sub1 = substr($string1,0,3);
@@ -24,17 +19,15 @@ function generate($string1,$string2){
   return $sub1.$sub2;
 }
 
-
 $ID = generate($name,$mobile);
 
-
-$sql = "INSERT INTO employee(ID,name,password,mobile,email,address,dob,presentComanyId,resume) VALUES ('$ID', '$name', '$password','$mobile','$email','$address','$dob', '$companyID',$imgContent)";
+$sql = "INSERT INTO employee(ID,name,password,mobile,email,address,dob,presentComanyId,resume,certificate,aadhar) VALUES ('$ID', '$name', '$password','$mobile','$email','$address','$dob', '$companyID','$resume','$certificate','$aadhar')";
 
 $res = mysqli_query($connection, $sql);
 if($res == False){
 	// header("Location: administrate.php?success=false");
 }else{
-	// header("Location: administrate.php?success=true");
+	 header("Location:login.php");
 }
 
 

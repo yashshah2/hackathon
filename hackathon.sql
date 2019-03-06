@@ -2,8 +2,8 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 06, 2019 at 09:04 AM
+-- Host: localhost
+-- Generation Time: Mar 06, 2019 at 10:48 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -56,6 +56,13 @@ CREATE TABLE `employee` (
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`ID`, `password`, `name`, `aadhar`, `mobile`, `address`, `dob`, `resume`, `ceritficate`, `presentComany`, `previousCompany`, `presentComanyId`, `previousCompanyId`, `email`) VALUES
+('Roh823', 'rohan', 'Rohan ', '', 8234567890, 'add', '12/12/12', '', '', NULL, NULL, 'tcs111', NULL, 'rohanabk123@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +86,20 @@ CREATE TABLE `manager` (
 INSERT INTO `manager` (`ID`, `name`, `companyName`, `companyID`, `password`, `mobile`, `email`) VALUES
 ('1', 'yash shah', 'TCS', 'tcs001', 'yashshah2', 8123738100, 'shah.yash362@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
+  `EID` varchar(50) NOT NULL,
+  `presentCompanyID` varchar(50) NOT NULL,
+  `appliedID` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -100,6 +121,22 @@ ALTER TABLE `employee`
 --
 ALTER TABLE `manager`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

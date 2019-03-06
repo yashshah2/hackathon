@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2019 at 08:11 AM
+-- Generation Time: Mar 06, 2019 at 08:23 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -41,7 +41,8 @@ CREATE TABLE `employee` (
   `presentComany` varchar(50) DEFAULT NULL,
   `previousCompany` varchar(50) DEFAULT NULL,
   `presentComanyId` varchar(20) DEFAULT NULL,
-  `previousCompanyId` varchar(20) DEFAULT NULL
+  `previousCompanyId` varchar(20) DEFAULT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -56,7 +57,8 @@ CREATE TABLE `manager` (
   `companyName` varchar(50) NOT NULL,
   `companyID` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `mobile` bigint(10) NOT NULL
+  `mobile` bigint(10) NOT NULL,
+  `email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

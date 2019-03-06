@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2019 at 08:23 AM
+-- Generation Time: Mar 06, 2019 at 09:04 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -21,6 +21,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `hackathon`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `name` varchar(50) NOT NULL,
+  `ID` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -58,17 +69,36 @@ CREATE TABLE `manager` (
   `companyID` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `mobile` bigint(10) NOT NULL,
-  `email` varchar(20) NOT NULL
+  `email` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `manager`
+--
+
+INSERT INTO `manager` (`ID`, `name`, `companyName`, `companyID`, `password`, `mobile`, `email`) VALUES
+('1', 'yash shah', 'TCS', 'tcs001', 'yashshah2', 8123738100, 'shah.yash362@gmail.com');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `manager`
+--
+ALTER TABLE `manager`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
 

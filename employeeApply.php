@@ -14,7 +14,7 @@ $res = mysqli_query($connection, $sql);
 if($res == False){
 	// header("Location: administrate.php?success=false");
 }else{
-	// header("Location: administrate.php?success=true");
+	 header("Location:employee.php");
 }
 
 

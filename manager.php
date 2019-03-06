@@ -33,11 +33,10 @@ require 'db_connect.php';
                 </tr>
             </thead>
             <tbody>
-              <form class="" action="employeeApply.php" method="post">
       <?php
 
       $presentCompanyID =   $_SESSION['presentCompanyID'];
-      $sql = "SELECT * FROM notification WHERE presentCompanyID='$presentCompanyID' ";
+      $sql = "SELECT * FROM notification WHERE appliedID='$presentCompanyID' AND status=1";
       $result = mysqli_query($connection,$sql);
 
         while (  $row = mysqli_fetch_assoc($result)) {
@@ -47,6 +46,8 @@ require 'db_connect.php';
             $details = mysqli_fetch_assoc($res);
 
             echo  "<tr>";
+
+            echo  "<form class='' action='approve.php' method='post'>";
 
             echo "<td><input type='radio' name='EID' value='".$details["ID"]."' required></td>";
 
@@ -67,6 +68,7 @@ require 'db_connect.php';
             echo "<td>".$details["certificate"]."</td>";
 
             echo "<td><button type = 'submit' >Approve Job</button></td>";
+            echo  "</form>";
 
             echo "</tr>";
 
@@ -87,6 +89,7 @@ require 'db_connect.php';
       <table id="cook1" class="table table-striped table-bordered table-responsive" >
             <thead>
                 <tr>
+                    <th></th>
                     <th>Employee ID</th>
                     <th>Name</th>
                     <th>Mobile</th>
@@ -98,7 +101,7 @@ require 'db_connect.php';
                 </tr>
             </thead>
             <tbody>
-              <form class="" action="employeeApply.php" method="post">
+
                 <?php
                 $sql = "SELECT * from employee WHERE presentComanyId = '$presentCompanyID'";
                 $res = mysqli_query($connection,$sql);
@@ -111,6 +114,7 @@ require 'db_connect.php';
 
                   if($count > 0){
                     echo  "<tr>";
+                    echo  "<form class='' action='managerLeavingRequestProcess.php' method='post'>";
 
                     echo "<td><input type='radio' name='EID' value='".$requestDetails["ID"]."' required></td>";
 
@@ -126,18 +130,17 @@ require 'db_connect.php';
 
                     echo "<td>".$requestDetails["dob"]."</td>";
 
+                    echo "<td><input type='text' name='certificate' value='".$requestDetails["certificate"]."' required></td>";
 
-                    echo "<td><input type='radio' name='companyID' value='".$requestDetails["certificate"]."'></td>";
-
-                    echo "<td><button type = 'submit' >Verify</button></td>";
-
+                    echo "<td><input type = 'submit' value='Verify'></td>";
+                    echo  "</form>";
                     echo "</tr>";
 
                   }
 
                 }
                  ?>
-              </form>
+
             </tbody>
 
 
